@@ -474,6 +474,16 @@ for (var i = 2; i < 100; i++) {
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
+// This is my code that replaces the above code
+/*
+var pizzaList = "";
+for (var i = 2; i< 100; i++) {
+  pizzaList = pizzaList + pizzaElementGenerator(i);
+}
+var pizzasDiv = document.getElementById("randomPizzas");
+pizzasDiv.appendChild(pizzaList);
+*/
+
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
 window.performance.mark("mark_end_generating");
 window.performance.measure("measure_pizza_generation", "mark_start_generating", "mark_end_generating");
