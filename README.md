@@ -30,6 +30,20 @@ Some useful tips to help you get started:
 
 Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
+####Part 1: Student Actions
+
+First I applied media settings for the style.css and print.css files, which removed print.css as a blocking entity.  I looked at minifying style.css to reduce file size, but since it was small already, I went ahead an inlined the file into index.html.
+
+Second, I added the async tag to the google analytics javascript link.
+
+Third, I looked at the pizzaria image.  This consumed the most time, and the file size is over 2MB.  I resized the file down to an image 100 pixes wide and kept the aspect ratio for the height.  This reduced the file size to ~25KB.
+
+Last, I optimzed the google fonts call by adding a javascript function to retrieve the fonts before the end of the body tag and removed the link tag from the head.
+
+Google PageSpeed scores rated index.html as 93/100 for mobile devices and 94/100 for desktop/laptops.
+
+The resulting page can be viewed here: http://chrisstricker.github.io/frontend-nanodegree-mobile-portfolio/index.html
+
 ####Part 2: Optimize Frames per Second in pizza.html
 
 To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
