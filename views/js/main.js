@@ -530,7 +530,7 @@ function updatePositions() {
   var items = document.querySelectorAll('.mover');
   var scrollTopCalc = document.body.scrollTop / 1250;
   
-  var pizzanum = screen.hieght/225 * screen.width/232;
+  var pizzanum = screen.height/225 * screen.width/232;
   
   for (var i = 0; i < pizzanum; i++) {
     var phase = Math.sin(scrollTopCalc + (i % 5));
