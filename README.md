@@ -50,6 +50,16 @@ To optimize views/pizza.html, you will need to modify views/js/main.js until you
 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
 
+####Part 2: Student Actions
+
+I focused my work on optimizing the main.js file, mainly concentrating on the updatePositions function and changePizzaSizes.
+
+I reduced the number of background images to a number that worked with the current screen size based on the size of the image used for the pizza.  I also moved those images to their own layer.
+
+In changePizzaSizes, I moved variables out of for loops so that they would not be calculated constantly.  This included pulling the list of nodes.
+
+The resulting page can be viewed here: http://chrisstricker.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html
+
 ### Optimization Tips and Tricks
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 * [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
