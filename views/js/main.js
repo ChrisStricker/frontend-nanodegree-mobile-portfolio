@@ -492,7 +492,7 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 var pizzaList = document.createDocumentFragment();
 for (var i = 2; i < 100; i++) {
-  pizzaList.appendChiled(pizzaElementGenerator(i));
+  pizzaList.appendChild(pizzaElementGenerator(i));
 }
 var pizzasDiv = document.getElementById("randomPizzas");
 pizzasDiv.appendChild(pizzaList.cloneNode(true));
