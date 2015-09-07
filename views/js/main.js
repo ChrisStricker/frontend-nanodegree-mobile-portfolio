@@ -530,7 +530,7 @@ function updatePositions() {
   var items = document.querySelectorAll('.mover');
   var scrollTopCalc = document.body.scrollTop / 1250;
   
-  var pizzanum = screen.height/225 * screen.width/232;
+  var pizzanum = items.length;
   
   for (var i = 0; i < pizzanum; i++) {
     var phase = Math.sin(scrollTopCalc + (i % 5));
@@ -554,7 +554,9 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var pizzanum = screen.height/225 * screen.width/232;
+  
+  for (var i = 0; i < pizzanum; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
