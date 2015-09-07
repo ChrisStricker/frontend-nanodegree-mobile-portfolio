@@ -457,6 +457,15 @@ var resizePizzas = function(size) {
     }
   }
 
+  function changePizzaSizes2(size) {
+    var pizzaContainerLength = document.getElementByName(".randomPizzaContainer");
+    for (i = 0; i < pizzaContainerLength; i++) {
+var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+}
+}
+
   changePizzaSizes(size);
 
   // User Timing API is awesome
