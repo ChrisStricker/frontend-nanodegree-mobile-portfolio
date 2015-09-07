@@ -487,14 +487,15 @@ window.performance.mark("mark_start_generating"); // collect timing data
 //  pizzasDiv.appendChild(pizzaElementGenerator(i));
 //}
 
-// This is my code that replaces the above code
+// This is my code that replaces the above code.  It removes retrieving and appending
+// by building a fragment and appending all the children into the parent dom all at once.
 
-var pizzaList = "";
+var pizzaList = document.createDocumentFragment();
 for (var i = 2; i < 100; i++) {
-  pizzaList = pizzaList + pizzaElementGenerator(i);
+  pizzaList.appendChiled(pizzaElementGenerator(i));
 }
 var pizzasDiv = document.getElementById("randomPizzas");
-pizzasDiv.appendChild(pizzaList);
+pizzasDiv.appendChild(pizzaList.cloneNode(true));
 
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
