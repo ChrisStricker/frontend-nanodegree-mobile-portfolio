@@ -447,15 +447,9 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  // Removed the multiple querySelectorAll for the more efficient getElementsByClassName.
+  // Moved variables out of the for loop that did not change over the entire iteration.
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
-    }
-  }
-
-  function changePizzaSizes2(size) {
     var pizzaNodes = document.getElementsByClassName("randomPizzaContainer");
     var pizzaNodeLength = pizzaNodes.length;
     
@@ -469,7 +463,7 @@ var resizePizzas = function(size) {
     }
   }
 
-  changePizzaSizes2(size);
+  changePizzaSizes(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
@@ -481,14 +475,9 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-//
-//for (var i = 2; i < 100; i++) {
-//  var pizzasDiv = document.getElementById("randomPizzas");
-//  pizzasDiv.appendChild(pizzaElementGenerator(i));
-//}
 
-// This is my code that replaces the above code.  It removes retrieving and appending
-// by building a fragment and appending all the children into the parent dom all at once.
+// Removed the retrieve/append method and replaced it with building a dom
+// fragment.  Then I append all the children into the parent dom at one time.
 
 var pizzaList = document.createDocumentFragment();
 for (var i = 2; i < 100; i++) {
@@ -516,7 +505,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
     sum = sum + times[i].duration;
   }
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
-  console.debug("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
@@ -554,6 +542,8 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  
+  //reduced the number of background pizzas that are generated.
   var pizzanum = screen.height/225 * screen.width/232;
   
   for (var i = 0; i < pizzanum; i++) {
