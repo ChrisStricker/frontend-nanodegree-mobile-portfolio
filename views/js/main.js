@@ -458,16 +458,16 @@ var resizePizzas = function(size) {
   }
 
   function changePizzaSizes2(size) {
-    var pizzaContainer = document.getElementByClassName("randomPizzaContainer");
-    var pizzaContainerLength = pizzaContainer.length;
-    for (i = 0; i < pizzaContainerLength; i++) {
-      var dx = determineDx(pizzaContainer)[i], size);
-      var newwidth = (pizzaContainer[i].offsetWidth + dx) + 'px';
-      pizzaContainer[i].style.width = newwidth;
+    var pizzaNodes = document.getElementsByClassName("randomPizzaContainer");
+    var pizzaNodeLength = pizzaNodes.length;
+    for (i = 0; i < pizzaNodeLength; i++) {
+      var dx = determineDx(pizzaNodes[i], size);
+      var newwidth = (pizzaNodes[i].offsetWidth + dx) + 'px';
+      pizzaNodes[i].style.width = newwidth;
     }
   }
 
-  changePizzaSizes(size);
+  changePizzaSizes2(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
