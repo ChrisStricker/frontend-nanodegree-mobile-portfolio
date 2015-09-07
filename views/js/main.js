@@ -482,19 +482,20 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
 //
-for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
-  pizzasDiv.appendChild(pizzaElementGenerator(i));
-}
-
-// This is my code that replaces the above code
-
-//var pizzaList = "";
 //for (var i = 2; i < 100; i++) {
-//  pizzaList = pizzaList + pizzaElementGenerator(i);
+//  var pizzasDiv = document.getElementById("randomPizzas");
+//  pizzasDiv.appendChild(pizzaElementGenerator(i));
 //}
-//var pizzasDiv = document.getElementById("randomPizzas");
-//pizzasDiv.appendChild(pizzaList);
+
+// This is my code that replaces the above code.  It removes retrieving and appending
+// by building a fragment and appending all the children into the parent dom all at once.
+
+var pizzaList = document.createDocumentFragment();
+for (var i = 2; i < 100; i++) {
+  pizzaList.appendChild(pizzaElementGenerator(i));
+}
+var pizzasDiv = document.getElementById("randomPizzas");
+pizzasDiv.appendChild(pizzaList.cloneNode(true));
 
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
@@ -527,8 +528,12 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  var scrollTopCalc = document.body.scrollTop / 1250;
+  
+  var pizzanum = items.length;
+  
+  for (var i = 0; i < pizzanum; i++) {
+    var phase = Math.sin(scrollTopCalc + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -549,7 +554,9 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var pizzanum = screen.height/225 * screen.width/232;
+  
+  for (var i = 0; i < pizzanum; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
