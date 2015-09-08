@@ -511,18 +511,23 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+// Added a suggestion from Mario Nuevo for storing the Math.sin calculations, since
+// the value of phase is only 1 of 5 values.
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('.mover');
   var scrollTopCalc = document.body.scrollTop / 1250;
-  
   var pizzanum = items.length;
+  var phase = [];
+  
+  for (var i = 0; i < 5; i++) {
+    phase.push(Math.sin(scrollTopCalc + i) * 100);
+  }
   
   for (var i = 0; i < pizzanum; i++) {
-    var phase = Math.sin(scrollTopCalc + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.left = items[i].basicLeft + phase[i%5] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
