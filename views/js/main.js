@@ -517,7 +517,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.getElementsByClassName('.mover');
+  var items = document.getElementsByClassName('mover');
   var scrollTopCalc = document.body.scrollTop / 1250;
   var pizzanum = items.length;
   var phase = [];
